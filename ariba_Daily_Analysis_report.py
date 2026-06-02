@@ -230,14 +230,12 @@ if open_file and resolved_file:
         )
 
         sla_breach = (
-            (open_sla > 0)
-            &
-            (open_sla < 1440)
+        open_sla < 0
         ).sum()
 
         # Priorities
         p1_count = (
-            todays_open_df[priority_col]
+            resolved_df[priority_col]
             .astype(str)
             .str.upper()
             .str.contains("P1")
@@ -245,7 +243,7 @@ if open_file and resolved_file:
         )
 
         p2_count = (
-            todays_open_df[priority_col]
+            resolved_df[priority_col]
             .astype(str)
             .str.upper()
             .str.contains("P2")
@@ -253,7 +251,7 @@ if open_file and resolved_file:
         )
 
         p3_count = (
-            todays_open_df[priority_col]
+            resolved_df[priority_col]
             .astype(str)
             .str.upper()
             .str.contains("P3")
@@ -262,37 +260,37 @@ if open_file and resolved_file:
 
         # Categories
         user_understanding = category_count(
-            todays_open_df[category_col],
-            "User understanding"
+        resolved_df[category_col],
+        "User understanding"
         )
 
         data_fixing = category_count(
-            todays_open_df[category_col],
+            resolved_df[category_col],
             "Data fixing"
         )
 
         master_data = category_count(
-            todays_open_df[category_col],
+            resolved_df[category_col],
             "Master data"
         )
 
         interface_related = category_count(
-            todays_open_df[category_col],
+            resolved_df[category_col],
             "Interface"
         )
 
         access = category_count(
-            todays_open_df[category_col],
+            resolved_df[category_col],
             "Access"
         )
 
         application_bug = category_count(
-            todays_open_df[category_col],
+            resolved_df[category_col],
             "Application bug"
         )
 
         repeated = category_count(
-            todays_open_df[category_col],
+            resolved_df[category_col],
             "Repeated"
         )
 
